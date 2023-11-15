@@ -40,3 +40,15 @@
 button {
   font-size: calc(10px + 2vmin);
 }
+
+
+.app-container {
+  z-index: 0;
+  width: calc(100vw - 300px);
+  height: calc(100vh - 64px);
+  margin-top:64px;
+}
+
+.app-container .body {
+  padding: 16px;
+}
