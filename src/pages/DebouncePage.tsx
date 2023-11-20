@@ -23,7 +23,7 @@ const DebouncePageV1 = () => {
     debouncedSendRequest(value)
   }
   return (
-    <Box>
+    <Box >
       <TextField label='debounce classic' value={value} onChange={onChange} />
     </Box>
   )
@@ -54,7 +54,7 @@ const DebouncePageV2 = () => {
 }
 
 const DebouncePage = () => (
-  <Stack display="flex" flexDirection="row" justifyContent="space-between">
+  <Stack display="flex" flexDirection="row" justifyContent="space-between" padding={2}>
     <DebouncePageV1 />
     <DebouncePageV2 />
   </Stack>

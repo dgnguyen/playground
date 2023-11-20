@@ -1,17 +1,18 @@
 import React from 'react'
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
 import { DebouncePage, HomePage } from '../pages'
+import PokemonDex from '../pages/PokemonDex'
 
 const Body = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/debounce" element={<DebouncePage />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/debounce" element={<DebouncePage />} />
+      <Route path="/pokemon" element={<PokemonDex />} />
+      <Route path="/" element={<HomePage />} />
+    </Routes>
+
   )
 }
 
