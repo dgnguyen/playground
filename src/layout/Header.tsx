@@ -16,13 +16,11 @@ import Typography from '@mui/material/Typography'
 
 import { useNavigate } from 'react-router-dom'
 
+import routes from '../constant/routes'
+
 const Header = () => {
   const navigate = useNavigate()
-  const routes = [
-    { label: 'Home', value: '/' },
-    { label: 'Debounce', value: '/debounce' },
-    { label: 'PokemonDex', value: '/pokemon' },
-  ]
+
   return (
     <Box sx={{ display: 'flex' }}>
       <AppBar position="fixed" sx={{ zIndex: theme => theme.zIndex.drawer + 1 }}>
