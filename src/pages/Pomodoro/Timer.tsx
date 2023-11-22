@@ -46,7 +46,7 @@ const Timer = () => {
   function tick() {
     // eslint-disable-next-line no-plusplus
     secondsLeftRef.current--
-    setsecondsLeft(secondsLeft - 1)
+    setsecondsLeft(secondsLeftRef.current)
   }
 
 
@@ -61,8 +61,8 @@ const Timer = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (isPaused) return
-      if (secondsLeft === 0) return switchMode()
+      if (isPausedRef.current) return
+      if (secondsLeftRef.current === 0) return switchMode()
       tick()
     }, 1000)
 
