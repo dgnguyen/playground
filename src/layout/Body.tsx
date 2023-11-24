@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom'
 import { DebouncePage, HomePage } from '../pages'
 import PokemonDex from '../pages/PokemonDex'
 import Pomodoro from '../pages/Pomodoro'
+import PromisePage from '../pages/PromisePage'
 
 import GihubSearch from '@/pages/GithubSearch'
 
@@ -15,6 +16,7 @@ const Body = () => {
       <Route path="/pokemon" element={<PokemonDex />} />
       <Route path="/pomodoro" element={<Pomodoro />} />
       <Route path="/github-search" element={<GihubSearch />} />
+      <Route path="/promise" element={<PromisePage />} />
       <Route path="/" element={<HomePage />} />
     </Routes>
 
