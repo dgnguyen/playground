@@ -40,7 +40,7 @@ const PromiseChainDatabase = () => {
     db3: db3,
   }
 
-  function vault(id) {
+  function vault(id: number) {
     return id < 3 ? simulatePromise2(3000, {
       firstname: `userFirstName-${id}`,
       lastname: `userLastName-${id}`,
@@ -54,8 +54,8 @@ const PromiseChainDatabase = () => {
     })
   }
 
-  const [dataShow, setDataShow] = useState(undefined)
-  const [value, setValue] = useState('')
+  const [dataShow, setDataShow] = useState<unknown>(undefined)
+  const [value, setValue] = useState<string | number>('')
   const [loadingCentral, setLoadingCentral] = useState(false)
   const [loadingBD, setLoadingBD] = useState(false)
   const [loadingVault, setLoadingVault] = useState(false)
@@ -100,7 +100,7 @@ const PromiseChainDatabase = () => {
     })
   }
 
-  const fetchData = (value: number) => {
+  const fetchData = (value: unknown) => {
     setLoadingCentral(true)
     setLoadingBD(true)
     setLoadingVault(true)
