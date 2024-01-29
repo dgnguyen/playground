@@ -5,8 +5,9 @@ import { Box, TextField, Typography } from '@mui/material'
 const StrictInputs = () => {
 
   const [inputValue, setFieldValue] = React.useState<string | number>(0)
+  const [inputValueFixed, setFieldValueFixed] = React.useState<string | number>(0)
 
-  const keyCodeForNavigate = ['ArrowLeft', 'ArrowRight', 'BackSpace']
+  const keyCodeForNavigate = ['ArrowLeft', 'ArrowRight', 'Backspace']
 
   function handleKeyDownRate(event: KeyboardEvent<HTMLInputElement>) {
     const eventTarget = event.target as HTMLInputElement
@@ -18,10 +19,12 @@ const StrictInputs = () => {
       const selectionStart = eventTarget?.selectionStart || 0
       const selectionEnd = eventTarget?.selectionEnd || 0
       let newValue = ''
-      if (keyCode === 'Backspace')
+      if (keyCode === 'Backspace') {
         newValue =
           currentValue.substring(0, selectionStart - 1) +
           currentValue.substring(selectionEnd)
+      }
+
       else if (['ArrowLeft', 'ArrowRight'].includes(keyCode)) newValue = currentValue
       else {
         newValue =
@@ -41,7 +44,9 @@ const StrictInputs = () => {
 
       const preventValueSup100 = !valueShouldUnder100 && newValue !== ''
 
-      if (prevent2ndDot || preventMoreThan2Digit || preventValueSup100) {
+      const addedUseless0 = keyCode === "0" && parseFloat(currentValue) === numericValue
+
+      if (prevent2ndDot || preventMoreThan2Digit || preventValueSup100 || addedUseless0) {
         event.preventDefault()
         return
       }
@@ -59,7 +64,7 @@ const StrictInputs = () => {
     const keyCode = event.key
 
     // allow numeric value with dots optional and navigate keycode
-    if (/^[0-9]*\.?[0-9]*$/.test(keyCode) || keyCodeForNavigate.includes(keyCode)) {
+    if (/^[0-9]*$/.test(keyCode) || keyCodeForNavigate.includes(keyCode)) {
       const selectionStart = eventTarget?.selectionStart || 0
       const selectionEnd = eventTarget?.selectionEnd || 0
       let newValue = ''
@@ -75,23 +80,18 @@ const StrictInputs = () => {
           currentValue.substring(selectionEnd)
       }
 
-      const hasDot = currentValue.includes('.')
-      const prevent2ndDot = hasDot && keyCode === '.'
 
       const numericValue = parseFloat(newValue)
-      const valueShouldUnder100 = numericValue >= 0 && numericValue <= 100
 
-      const digitsPart = newValue?.split('.')?.[1] || []
-      const preventMoreThan2Digit = digitsPart.length > 2
+      const addedUseless0 = keyCode === "0" && parseFloat(currentValue) === numericValue
 
-      const preventValueSup100 = !valueShouldUnder100 && newValue !== ''
-
-      if (prevent2ndDot || preventMoreThan2Digit || preventValueSup100) {
+      if (addedUseless0) {
         event.preventDefault()
         return
       }
-      if (newValue === '' || numericValue === 0) setFieldValue(0)
-      else setFieldValue(newValue)
+
+      if (newValue === '' || numericValue === 0) setFieldValueFixed(0)
+      else setFieldValueFixed(newValue)
     } else {
       // Prevent input for any other keys (e.g., letters, special characters)
       event.preventDefault()
@@ -102,7 +102,7 @@ const StrictInputs = () => {
     <Typography>Input type text for percentage, allow from 0 to 100% with 2 digits after dots</Typography>
     <TextField value={inputValue} onKeyDown={handleKeyDownRate} />
     <Typography>Input type text for number, allow only number with no digits</Typography>
-    <TextField value={inputValue} onKeyDown={handleKeyDownFixed} />
+    <TextField value={inputValueFixed} onKeyDown={handleKeyDownFixed} />
   </Box>)
 }
 

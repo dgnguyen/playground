@@ -25,16 +25,16 @@ const HomePage = () => {
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="basic tabs example">
-            <Tab label="ClimbingBoard" value="1" />
+            <Tab label="ClimbingBoard" value="4" />
             <Tab label="Baseball" value="2" />
             <Tab label="LongestKeyInObj" value="3" />
-            <Tab label="StrictInputs" value="4" />
+            <Tab label="StrictInputs" value="1" />
           </TabList>
         </Box>
-        <TabPanel value="1"> <ClimbingBoard /></TabPanel>
+        <TabPanel value="4"> <ClimbingBoard /></TabPanel>
         <TabPanel value="2"> <Baseball /></TabPanel>
         <TabPanel value="3"> <LongestKeyInObj /></TabPanel>
-        <TabPanel value="4">  <StrictInputs /></TabPanel>
+        <TabPanel value="1">  <StrictInputs /></TabPanel>
       </TabContext>
     </div >
   )
