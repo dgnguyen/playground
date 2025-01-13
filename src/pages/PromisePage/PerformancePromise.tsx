@@ -6,7 +6,7 @@ import { simulatePromise } from './helper'
 
 const PerformancePromise = () => {
   const [data, setData] = useState<string>('')
-  async function performancePromise(promise: Promise<unknown>, timeOut: number) {
+  async function performancePromise(promise: Promise<any>, timeOut: number) {
     const startInstant = performance.now()
     const resultPromise = await promise
     const endInstant = performance.now()

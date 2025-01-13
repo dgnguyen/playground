@@ -2,7 +2,8 @@ import React from 'react'
 
 import { Box, Link, Typography } from '@mui/material'
 
-import { player1, ranked1 } from '../../mocks/climingLeaderBoard'
+import { player1, ranked1 } from 'mocks/climingLeaderBoard'
+
 import { climbingLeaderboard, } from '../helpers'
 
 import '../../app.css'

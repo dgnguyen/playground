@@ -1,12 +1,11 @@
-
 export interface PromiseFulfilledResult<T> {
-  status: "fulfilled";
-  value: T;
+  status: 'fulfilled'
+  value: T
 }
 
 export interface PromiseRejectedResult<T> {
-  status: "rejected";
-  reason: T;
+  status: 'rejected'
+  reason: T
 }
 
 export interface PropsResult {
@@ -14,13 +13,14 @@ export interface PropsResult {
   time: number
 }
 
-export type PromiseSettledResult<T> = PromiseFulfilledResult<T> | PromiseRejectedResult<T>;
-
+export type PromiseSettledResult<T> =
+  | PromiseFulfilledResult<T>
+  | PromiseRejectedResult<T>
 
 export type DataDB = {
-  id: number,
-  username: string,
-  country: string,
+  id: number
+  username: string
+  country: string
 }
 
 export type DataMarked = {
@@ -33,5 +33,4 @@ export interface DataVault {
   email: string
 }
 
-
-export type DataUser = DataDB & DataVault 
+export type DataUser = DataDB & DataVault

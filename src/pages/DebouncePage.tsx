@@ -2,9 +2,8 @@ import React, { ChangeEventHandler, useCallback, useMemo, useState } from 'react
 
 import { Box, Stack, TextField } from '@mui/material'
 
+import { useDebounce } from 'hooks/useDebounce'
 import debounce from 'lodash/debounce'
-
-import { useDebounce } from '@/hooks/useDebounce'
 
 const DebouncePageV1 = () => {
   const [value, setValue] = useState('')

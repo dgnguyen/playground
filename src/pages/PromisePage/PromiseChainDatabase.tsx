@@ -54,8 +54,8 @@ const PromiseChainDatabase = () => {
     })
   }
 
-  const [dataShow, setDataShow] = useState<unknown>(undefined)
-  const [value, setValue] = useState<string | number>('')
+  const [dataShow, setDataShow] = useState<DataUser | null>(null)
+  const [value, setValue] = useState<string | undefined>('')
   const [loadingCentral, setLoadingCentral] = useState(false)
   const [loadingBD, setLoadingBD] = useState(false)
   const [loadingVault, setLoadingVault] = useState(false)
@@ -69,9 +69,9 @@ const PromiseChainDatabase = () => {
           .catch(() => {
             // eslint-disable-next-line prefer-promise-reject-errors
             return Promise.reject('Error central')
-          }).then(db => {
+          }).then((db: unknown) => {
             setLoadingCentral(false)
-            return dbs[db](id)
+            return dbs[db as keyof typeof dbs](id)
               .catch(() => {
                 setError(`Error ${db}`)
                 return Promise.reject(`Error ${db}`)
@@ -100,13 +100,13 @@ const PromiseChainDatabase = () => {
     })
   }
 
-  const fetchData = (value: unknown) => {
+  const fetchData = (value: number) => {
     setLoadingCentral(true)
     setLoadingBD(true)
     setLoadingVault(true)
     setLoadingMark(true)
     try {
-      getData(value).then(data => {
+      getData(value).then((data: any) => {
         setDataShow(data)
       }, error => {
         setError(error)
@@ -120,7 +120,7 @@ const PromiseChainDatabase = () => {
   }
 
   useEffect(() => {
-    if (value) fetchData(value)
+    if (value) fetchData(Number(value))
   }, [value])
 
   const options = [
@@ -184,9 +184,9 @@ const PromiseChainDatabase = () => {
         {dataShow && !error && [loadingCentral, loadingBD, loadingVault, loadingMark].includes(false) &&
           (<Box>
             <Typography variant="h5">Result</Typography>
-            {Object.keys(dataShow).map(key => {
+            {Object.keys(dataShow).map((key: string) => {
               return (
-                <Box key={key}>{key}: {JSON.stringify(dataShow[key], null, 4)}</Box>
+                <Box key={key}>{key}: {JSON.stringify(dataShow?.[key as keyof typeof dataShow], null, 4)}</Box>
               )
             })}
           </Box>)

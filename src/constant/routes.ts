@@ -5,6 +5,7 @@ const routes = [
   { label: 'Pomodoro', value: '/pomodoro' },
   { label: 'Github search', value: '/github-search' },
   { label: 'Promise page', value: '/promise' },
+  { label: 'Live visitor', value: '/live-visitor' },
 ]
 
 export default routes
